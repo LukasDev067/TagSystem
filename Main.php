@@ -39,6 +39,7 @@ class Main extends PluginBase implements Listener {
       return false;
      }
      if(strtolower($args[0]) == "comprar"){
+      $chat = $this->getServer()->getPluginManager()->getPlugin("PurePerms");
        if(!isset($args[1])){
       $sender->sendMessage("§e/systemtag comprar <tag>");
        return;
@@ -50,7 +51,9 @@ class Main extends PluginBase implements Listener {
          return;
        }
        if($count >= 10){
-        
+          $this->getServer()->dispatchCommand(new ConsoleCommandSender(), "setgroup " . $sender->getName() . " LukasDev");
+          $player->sendMessage("§aVoçe comprou a tag");
+         $this->contador[$sender->getName()] -= 10;
        }
       }
      }
